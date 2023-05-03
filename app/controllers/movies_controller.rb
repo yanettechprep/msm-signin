@@ -28,6 +28,7 @@ class MoviesController < ApplicationController
 
     if the_movie.valid?
       the_movie.save
+      
       redirect_to("/movies", { :notice => "Movie created successfully." })
     else
       redirect_to("/movies", { :alert => the_movie.errors.full_messages.to_sentence })
