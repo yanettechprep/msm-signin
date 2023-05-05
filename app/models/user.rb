@@ -15,7 +15,7 @@ class User < ApplicationRecord
   validates :email, :presence => true
   has_secure_password
 
-  has_many :bookmarks
+  has_many :bookmarks, class_name: "Bookmark", foreign_key: "user_id"
 
   has_many :movies, :through => :bookmarks
 end

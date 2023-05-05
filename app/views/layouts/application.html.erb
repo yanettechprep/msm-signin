@@ -28,11 +28,18 @@
 <li>
 <a href="/characters">Characters</a>
 </li>
+
+<% if @current_user == nil%>
 <li>
 <a href="/bookmarks"> My Bookmarks</a>
 </li>
+<% else %>
+<li>
+<a href="/bookmarks"><%= @current_user.first_name %>'s bookmarks</a>
+</li>
+<% end %>
 
-<% if session.fetch(:user_id) == nil %>
+<% if @current_user == nil %>
     <li>
     <a href="/user_sign_up">Sign up</a>
     </li>

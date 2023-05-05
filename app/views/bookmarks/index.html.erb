@@ -14,21 +14,23 @@
       Add a new bookmark
     </h2>
 
-    <form action="/insert_bookmark" method="post">
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id">
-      </div>
-
+    <form action="/insert_bookmark" method="post"> 
       <div>
         <label for="movie_id_box">
           Movie
         </label>
 
-        <input type="text" id="movie_id_box" name="query_movie_id">
+        <select name="query_movie_id">
+
+        <% Movie.all.order(:title).each do |a_movie|%>
+
+        <option value="<%= a_movie.id %>">
+
+        <%= a_movie.title %>
+        
+        </option>
+        <% end %>
+        </select>
       </div>
 
       <button>
@@ -74,11 +76,11 @@
         </td>
 
         <td>
-          <%= a_bookmark.user_id %>
+          <%= a_bookmark.user.first_name %>
         </td>
 
         <td>
-          <%= a_bookmark.movie_id %>
+          <%= a_bookmark.movie.title%>
         </td>
 
         <td>
@@ -87,7 +89,11 @@
         <td>
           <%= time_ago_in_words(a_bookmark.updated_at) %> ago
         </td>
-
+        <td>
+          <a href="/delete_bookmark/<%= a_bookmark.id %>">
+            Un-bookmark
+          </a>
+        </td>
         <td>
           <a href="/bookmarks/<%= a_bookmark.id %>">
             Show details
@@ -98,5 +104,6 @@
     </table>
   </div>
 </div>
+
 
 <hr>
