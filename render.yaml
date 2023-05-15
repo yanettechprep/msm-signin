@@ -1,12 +1,12 @@
 databases:
-  - name: MSMSIGNIN
+  - name: msmsignin
     plan: free
-    databaseName: MSMSIGNIN
-    user: MSMSIGNIN
+    databaseName: msmsignin
+    user: msmsignin
 
 services:
   - type: web
-    name: MSMSIGNIN
+    name: msmsignin
     plan: free
     env: ruby
     buildCommand: "./bin/render-build.sh"
@@ -14,7 +14,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: MSMSIGNIN
+          name: msmsignin
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
